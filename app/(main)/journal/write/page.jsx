@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { createCollection, getCollections } from "@/actions/collection";
 import CollectionForm from "@/components/collection-form";
+import TherapistPanel from "@/components/TherapistPanel";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), { ssr:
 false });
@@ -368,7 +369,8 @@ return (
   open={isCollectionDialogOpen}
   setOpen={setIsCollectionDialogOpen}
   />
-
+ {/* 🧠 Therapist panel goes here */}
+ <TherapistPanel />
 </div>
 
 
