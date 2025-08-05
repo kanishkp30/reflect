@@ -77,10 +77,13 @@ It could be a small moment, a person, or even your own resilience.`;
     const newMessages = [...messages, { role: 'user', content: text }];
     setMessages(newMessages);
 
-    const formattedHistory = newMessages.slice(0, -1).map((msg) => ({
-      role: msg.role === 'assistant' ? 'model' : msg.role,
-      parts: [{ text: msg.content }],
-    }));
+    const formattedHistory = newMessages
+  .slice(0, -1)
+  .filter((msg, idx) => !(idx === 0 && msg.role === 'assistant')) // skip first assistant
+  .map((msg) => ({
+    role: msg.role === 'assistant' ? 'model' : 'user',
+    parts: [{ text: msg.content }],
+  }));
 
     try {
       const chat = model.startChat({
